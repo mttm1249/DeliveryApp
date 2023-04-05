@@ -90,12 +90,12 @@ extension SectionHeader: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
         if let selectedIndexPath = selectedIndexPath, let cell = collectionView.cellForItem(at: selectedIndexPath) as? CategoryCell {
-            cell.textLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+            cell.textLabel.font = .systemFont(ofSize: 13, weight: .semibold)
             cell.backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 0.1965542219)
             cell.layer.borderWidth = 0
         }
         cell.textLabel.text = categoryArray[indexPath.row].name
-        cell.textLabel.font = .systemFont(ofSize: 17, weight: .regular)
+        cell.textLabel.font = .systemFont(ofSize: 13, weight: .regular)
         cell.textLabel.textColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1)
         cell.backgroundColor = .clear
         cell.layer.cornerRadius = 16
@@ -118,12 +118,12 @@ extension SectionHeader: UICollectionViewDelegateFlowLayout {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         delegate?.scrollToSelectedCategory(type: categoryArray[indexPath.row].type)
         if let selectedIndexPath = selectedIndexPath, let cell = collectionView.cellForItem(at: selectedIndexPath) as? CategoryCell {
-            cell.textLabel.font = .systemFont(ofSize: 17, weight: .regular)
+            cell.textLabel.font = .systemFont(ofSize: 13, weight: .regular)
             cell.backgroundColor = .clear
             cell.layer.borderWidth = 1
         }
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell else { return }
-        cell.textLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        cell.textLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         cell.backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 0.1965542219)
         cell.layer.borderWidth = 0
         selectedIndexPath = indexPath
