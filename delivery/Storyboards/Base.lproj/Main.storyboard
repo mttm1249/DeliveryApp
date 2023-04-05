@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="delivery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9sh-ev-deg">
+                                <rect key="frame" x="0.0" y="111" width="393" height="658"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uuR-Ec-XRt">
+                                    <size key="itemSize" width="42" height="42"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="labelCell" id="Ydn-Mg-hSR">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CSy-6Y-xqn">
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="42" height="42"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLm-yu-8fV">
+                                <rect key="frame" x="16" y="67" width="103" height="34.333333333333343"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Москва" image="chevron.down" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" image="chevronDown" imagePlacement="trailing" title="Москва ">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2X3-u7-Fpf" userLabel="Tab bar view">
+                                <rect key="frame" x="0.0" y="769" width="393" height="83"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCl-PP-w3B" userLabel="Separator view">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1"/>
+                                        <color key="backgroundColor" red="0.76470588235294112" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="r0l-ze-uQO"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kPA-Gv-eaW" userLabel="Buttons stack">
+                                        <rect key="frame" x="16" y="8" width="361" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lkb-6V-0ke">
+                                                <rect key="frame" x="0.0" y="0.0" width="90.333333333333329" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="tintColor" red="0.99215686274509807" green="0.22745098039215686" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Меню"/>
+                                                <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Меню">
+                                                    <imageReference key="image" image="burger" symbolScale="medium"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4c-pP-4BE">
+                                                <rect key="frame" x="90.333333333333343" y="0.0" width="90.333333333333343" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="tintColor" red="0.76470588235294112" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Контакты"/>
+                                                <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Контакты">
+                                                    <imageReference key="image" image="pin" symbolScale="medium"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHK-qw-CE0">
+                                                <rect key="frame" x="180.66666666666666" y="0.0" width="89.999999999999972" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="tintColor" red="0.76470588235294112" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Профиль"/>
+                                                <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Профиль">
+                                                    <imageReference key="image" image="person" symbolScale="medium"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lM2-ft-iQj">
+                                                <rect key="frame" x="270.66666666666669" y="0.0" width="90.333333333333314" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="tintColor" red="0.76470588235294112" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Корзина"/>
+                                                <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Корзина">
+                                                    <imageReference key="image" image="basket" symbolScale="medium"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="AuU-xh-gGD"/>
+                                    <constraint firstItem="kCl-PP-w3B" firstAttribute="top" secondItem="2X3-u7-Fpf" secondAttribute="top" id="HG5-fj-tlv"/>
+                                    <constraint firstItem="kCl-PP-w3B" firstAttribute="leading" secondItem="2X3-u7-Fpf" secondAttribute="leading" id="Lx0-PN-jyD"/>
+                                    <constraint firstItem="kPA-Gv-eaW" firstAttribute="leading" secondItem="2X3-u7-Fpf" secondAttribute="leading" constant="16" id="OJl-S0-TCh"/>
+                                    <constraint firstAttribute="trailing" secondItem="kCl-PP-w3B" secondAttribute="trailing" id="YYs-DY-LCV"/>
+                                    <constraint firstAttribute="trailing" secondItem="kPA-Gv-eaW" secondAttribute="trailing" constant="16" id="ZU4-lb-1nj"/>
+                                    <constraint firstItem="kPA-Gv-eaW" firstAttribute="top" secondItem="2X3-u7-Fpf" secondAttribute="top" constant="8" id="ZdG-6N-4b7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.96078431372549022" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="2X3-u7-Fpf" secondAttribute="bottom" id="6ji-Dd-wup"/>
+                            <constraint firstItem="2X3-u7-Fpf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8b7-VI-7ns"/>
+                            <constraint firstItem="9sh-ev-deg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HjU-ju-GEq"/>
+                            <constraint firstItem="2X3-u7-Fpf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jxr-2n-QQv"/>
+                            <constraint firstItem="KLm-yu-8fV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Pis-Pb-WP6"/>
+                            <constraint firstItem="9sh-ev-deg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XcF-Eb-Lr6"/>
+                            <constraint firstItem="2X3-u7-Fpf" firstAttribute="top" secondItem="9sh-ev-deg" secondAttribute="bottom" id="ehK-KL-Ymu"/>
+                            <constraint firstItem="KLm-yu-8fV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="iX6-gI-KBA"/>
+                            <constraint firstItem="9sh-ev-deg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52" id="nN2-3c-cSY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KLm-yu-8fV" secondAttribute="trailing" constant="264" id="neu-tB-fu8"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Crl-vb-1cM"/>
+                    <connections>
+                        <outlet property="collectionView" destination="9sh-ev-deg" id="pBZ-hh-FC1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="basket" width="20" height="19.333333969116211"/>
+        <image name="burger" width="20.333333969116211" height="20"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="chevronDown" width="14" height="8"/>
+        <image name="person" width="18" height="19"/>
+        <image name="pin" width="16" height="20.333333969116211"/>
+    </resources>
+</document>
