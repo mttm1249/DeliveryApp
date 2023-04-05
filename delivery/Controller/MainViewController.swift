@@ -12,18 +12,18 @@ enum Section: Int, CaseIterable {
     case products
 }
 
-class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
+class MainViewController: UIViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private let sectionHeader = SectionHeader()
-
+    
     private var banners = [ProductContentModel]()
     private var products = [ProductContentModel]()
     private var dataSource: DataSource!
-
+    
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ProductContentModel>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ProductContentModel>
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sectionHeader.delegate = self
@@ -31,10 +31,10 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         configureCollectionView()
         configureDataSource()
     }
-
+    
     // MARK: Fetch data from JSON
     private func fetch() {
-        let url = URLManager.shared.mainScreenURL
+        let url = URLManager.shared.apiURL
         NetworkManager.shared.loadJson(urlString: url) {
             [weak self] (result: Result<ProductsContent, Error>) in
             switch result {
@@ -46,7 +46,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                                              productPrice: product.productPrice,
                                                              productType: product.productType,
                                                              imageString: product.imageString)
-
+                    
                     if productContent.productType == "banner" {
                         self?.banners.append(productContent)
                     } else {
@@ -59,21 +59,23 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+}
 
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     // MARK: Сonfigure CollectionView
     private func configureCollectionView() {
         collectionView.collectionViewLayout = createLayout()
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
         let productCell = UINib(nibName: "ProductCell", bundle: nil)
         collectionView.register(productCell, forCellWithReuseIdentifier: ProductCell.reuseIdentifier)
-
+        
         let bannerCell = UINib(nibName: "BannerCell", bundle: nil)
         collectionView.register(bannerCell, forCellWithReuseIdentifier: BannerCell.reuseIdentifier)
-
+        
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
     }
-
     // MARK: Create Layout for CollectionView
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
@@ -81,12 +83,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
                 item.contentInsets.leading = 16
                 item.contentInsets.bottom = 20
-
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(300), heightDimension: .absolute(140)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-
                 section.orthogonalScrollingBehavior = .groupPaging
-
                 return section
             } else if sectionIndex == 1 {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(0), heightDimension: .absolute(0)))
@@ -97,25 +96,23 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)))
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-
+                
                 // MARK: HEADER WITH CATEGORY SELECTOR
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70))
                 let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
                 section.boundarySupplementaryItems = [sectionHeader]
                 sectionHeader.pinToVisibleBounds = true
-
                 return section
             } else {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-
                 return section
             }
         }
         return layout
     }
-
+    
     // MARK: Сonfigure CollectionViewDataSource
     private func configureDataSource() {
         dataSource = DataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
@@ -146,7 +143,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         applySnapshot()
     }
-
+    
     // MARK: Snapshot
     private func applySnapshot() {
         var snapshot = Snapshot()

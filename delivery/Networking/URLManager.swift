@@ -7,9 +7,10 @@
 
 import Foundation
 
+// MARK: API URL
 class URLManager {
     
-    let mainScreenURL = "https://run.mocky.io/v3/78d67f9e-6743-47f8-a20f-948306c44030"
+    let apiURL = "https://run.mocky.io/v3/78d67f9e-6743-47f8-a20f-948306c44030"
     
     static let shared = URLManager()
     private init() {}
