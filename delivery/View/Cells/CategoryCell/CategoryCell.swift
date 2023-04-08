@@ -10,7 +10,7 @@ import UIKit
 class CategoryCell: UICollectionViewCell {
     
     static let reuseIdentifier = "CategoryCell"
-    
+        
     lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center

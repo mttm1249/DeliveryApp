@@ -13,10 +13,11 @@ enum Section: Int, CaseIterable {
 }
 
 class MainViewController: UIViewController {
-    
+
     @IBOutlet weak var collectionView: UICollectionView!
     private let sectionHeader = SectionHeader()
     
+    private var currentProductType: String?
     private var banners = [ProductContentModel]()
     private var products = [ProductContentModel]()
     private var dataSource: DataSource!
@@ -27,6 +28,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sectionHeader.delegate = self
+        collectionView.delegate = self
         fetch()
         configureCollectionView()
         configureDataSource()
@@ -62,7 +64,6 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
     // MARK: Сonfigure CollectionView
     private func configureCollectionView() {
         collectionView.collectionViewLayout = createLayout()
@@ -161,6 +162,29 @@ extension MainViewController: CategoryDelegateProtocol {
         if let index = index {
             let indexPath = IndexPath(item: index, section: 2)
             collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        }
+    }
+}
+
+// MARK: Activation of a button equal to the category type
+extension MainViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let indexPath = collectionView.indexPathsForVisibleItems.first {
+            let productType = products[indexPath.item].productType
+            if productType != currentProductType {
+                currentProductType = productType
+                
+                guard productType != nil else { return }
+                
+                let visibleSections = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: UICollectionView.elementKindSectionHeader)
+                guard let firstSection = visibleSections.first?.section else { return }
+                guard let sectionHeader = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: firstSection)) as? SectionHeader else { return }
+                sectionHeader.selectedCategory = productType!
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    sectionHeader.collectionView.reloadData()
+                }
+            }
         }
     }
 }
