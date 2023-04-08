@@ -10,8 +10,8 @@ import Foundation
 // MARK: API URL
 class URLManager {
     
-    let apiURL = "https://run.mocky.io/v3/78d67f9e-6743-47f8-a20f-948306c44030"
-    
+    let apiURL = "https://run.mocky.io/v3/e2cb1283-ce5c-462e-b4e2-7f6489777c27"
+
     static let shared = URLManager()
     private init() {}
 }

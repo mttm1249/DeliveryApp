@@ -180,10 +180,7 @@ extension MainViewController {
                 guard let firstSection = visibleSections.first?.section else { return }
                 guard let sectionHeader = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: firstSection)) as? SectionHeader else { return }
                 sectionHeader.selectedCategory = productType!
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    sectionHeader.collectionView.reloadData()
-                }
+                sectionHeader.collectionView.reloadData()
             }
         }
     }
