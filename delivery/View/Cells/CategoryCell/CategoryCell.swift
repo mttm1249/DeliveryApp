@@ -14,8 +14,24 @@ class CategoryCell: UICollectionViewCell {
     lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 1)
         return label
     }()
+    
+    var isSelectedCell: Bool = false {
+        didSet {
+            if isSelectedCell {
+                textLabel.font = .systemFont(ofSize: 13, weight: .semibold)
+                backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.2274509804, blue: 0.4117647059, alpha: 0.1965542219)
+                layer.borderWidth = 0
+            } else {
+                textLabel.font = .systemFont(ofSize: 13, weight: .regular)
+                backgroundColor = .clear
+                layer.borderWidth = 1
+                layer.borderColor = #colorLiteral(red: 0.9701812863, green: 0.6653127074, blue: 0.7502200007, alpha: 1)
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,6 +45,8 @@ class CategoryCell: UICollectionViewCell {
     
     private func commonInit() {
         textLabelConstraints()
+        isSelectedCell = false
+        layer.cornerRadius = 16
     }
     
     private func textLabelConstraints() {

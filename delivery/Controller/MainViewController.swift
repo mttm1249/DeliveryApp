@@ -8,7 +8,6 @@ import UIKit
 
 enum Section: Int, CaseIterable {
     case banner
-    case category
     case products
 }
 
@@ -17,6 +16,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private let sectionHeader = SectionHeader()
     
+    private var lastContentOffset: CGFloat = 0
     private var currentProductType: String?
     private var banners = [ProductContentModel]()
     private var products = [ProductContentModel]()
@@ -89,18 +89,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
                 section.orthogonalScrollingBehavior = .groupPaging
                 return section
             } else if sectionIndex == 1 {
-                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(0), heightDimension: .absolute(0)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(0), heightDimension: .absolute(0)), subitems: [item])
+                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(10)))
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(10)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-                return section
-            } else if sectionIndex == 2 {
-                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)))
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
+                
+                // background for section
+                let sectionInset: CGFloat = 16
+                section.contentInsets = NSDirectionalEdgeInsets(top: sectionInset, leading: sectionInset, bottom: sectionInset, trailing: sectionInset)
+                let backgroundItem = NSCollectionLayoutDecorationItem.background(elementKind: "background")
+                let backgroundInset: CGFloat = 0
+                backgroundItem.contentInsets = NSDirectionalEdgeInsets(top: 70, leading: backgroundInset, bottom: backgroundInset, trailing: backgroundInset)
+                section.decorationItems = [backgroundItem]
                 
                 // MARK: HEADER WITH CATEGORY SELECTOR
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70))
                 let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                sectionHeader.contentInsets.leading = -16
+                sectionHeader.contentInsets.trailing = -16
                 section.boundarySupplementaryItems = [sectionHeader]
                 sectionHeader.pinToVisibleBounds = true
                 return section
@@ -111,6 +116,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
                 return section
             }
         }
+        // register background for section
+        layout.register(SectionBackground.self, forDecorationViewOfKind: "background")
         return layout
     }
     
@@ -131,10 +138,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.reuseIdentifier, for: indexPath) as? ProductCell
                 cell?.setup(model: self.products[indexPath.item])
                 return cell
-            case .category:
-                break
             }
-            return UICollectionViewCell()
         })
         // Adding section header
         dataSource.supplementaryViewProvider = { [self] (collectionView, kind, indexPath) in
@@ -148,7 +152,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
     // MARK: Snapshot
     private func applySnapshot() {
         var snapshot = Snapshot()
-        snapshot.appendSections([.banner, .category, .products])
+        snapshot.appendSections([.banner, .products])
         snapshot.appendItems(banners, toSection: .banner)
         snapshot.appendItems(products, toSection: .products)
         dataSource.apply(snapshot, animatingDifferences: true)
@@ -160,7 +164,7 @@ extension MainViewController: CategoryDelegateProtocol {
     func scrollToSelectedCategory(type: String) {
         let index = products.firstIndex(where: { $0.productType == type })
         if let index = index {
-            let indexPath = IndexPath(item: index, section: 2)
+            let indexPath = IndexPath(item: index, section: 1)
             collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
         }
     }
@@ -174,14 +178,30 @@ extension MainViewController {
             if productType != currentProductType {
                 currentProductType = productType
                 
-                guard productType != nil else { return }
+                guard let productType = productType else { return }
                 
                 let visibleSections = collectionView.indexPathsForVisibleSupplementaryElements(ofKind: UICollectionView.elementKindSectionHeader)
                 guard let firstSection = visibleSections.first?.section else { return }
                 guard let sectionHeader = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: firstSection)) as? SectionHeader else { return }
-                sectionHeader.selectedCategory = productType!
-                sectionHeader.collectionView.reloadData()
+                sectionHeader.selectedCategory = productType
+                
+                let indexPaths = sectionHeader.collectionView.indexPathsForVisibleItems
+                if let lastIndexPath = indexPaths.last, scrollView.contentOffset.y > lastContentOffset {
+                    sectionHeader.collectionView.scrollToItem(at: lastIndexPath, at: .centeredHorizontally, animated: true)
+                    sectionHeader.collectionView.reloadItems(at: indexPaths)
+                } else if let firstIndexPath = indexPaths.first {
+                    sectionHeader.collectionView.scrollToItem(at: firstIndexPath, at: .centeredHorizontally, animated: true)
+                    sectionHeader.collectionView.reloadItems(at: indexPaths)
+                }
+                lastContentOffset = scrollView.contentOffset.y
             }
         }
     }
 }
+
+
+
+
+
+
+
