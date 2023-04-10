@@ -19,10 +19,6 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vUw-Uq-bMU">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="140"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="140" id="2Ce-1O-eMe"/>
-                            <constraint firstAttribute="width" constant="300" id="KxV-6G-6qC"/>
-                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="15"/>
@@ -30,13 +26,13 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="K9O-Zn-eVK">
-                        <rect key="frame" x="140" y="46" width="20" height="20"/>
+                        <rect key="frame" x="140" y="60" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="K9O-Zn-eVK" firstAttribute="centerY" secondItem="vUw-Uq-bMU" secondAttribute="centerY" constant="-14" id="Fu5-bq-9Bq"/>
-                    <constraint firstItem="K9O-Zn-eVK" firstAttribute="centerX" secondItem="vUw-Uq-bMU" secondAttribute="centerX" id="SwP-5i-csC"/>
+                    <constraint firstItem="K9O-Zn-eVK" firstAttribute="centerY" secondItem="vUw-Uq-bMU" secondAttribute="centerY" id="bHw-37-doV"/>
                     <constraint firstAttribute="bottom" secondItem="vUw-Uq-bMU" secondAttribute="bottom" id="buJ-ID-B1x"/>
+                    <constraint firstItem="K9O-Zn-eVK" firstAttribute="centerX" secondItem="vUw-Uq-bMU" secondAttribute="centerX" id="cdh-Ec-Kgv"/>
                     <constraint firstAttribute="trailing" secondItem="vUw-Uq-bMU" secondAttribute="trailing" id="d4F-Zg-ids"/>
                     <constraint firstItem="vUw-Uq-bMU" firstAttribute="leading" secondItem="t3l-Fc-rBM" secondAttribute="leading" id="kHr-YC-gVh"/>
                     <constraint firstItem="vUw-Uq-bMU" firstAttribute="top" secondItem="t3l-Fc-rBM" secondAttribute="top" id="kXm-bX-Orj"/>

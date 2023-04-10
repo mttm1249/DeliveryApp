@@ -32,10 +32,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Nk0-S6-MFJ">
-                                <rect key="frame" x="71" y="79" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K84-qx-KVX">
                                 <rect key="frame" x="310" y="132" width="88" height="32"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,10 +67,14 @@
                                     <constraint firstAttribute="height" constant="1" id="JOY-Tl-ODK"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Nk0-S6-MFJ">
+                                <rect key="frame" x="56" y="79" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mmw-XV-BMt" firstAttribute="leading" secondItem="O7R-xr-f1z" secondAttribute="leading" id="1hd-lV-6ax"/>
+                            <constraint firstItem="Nk0-S6-MFJ" firstAttribute="centerY" secondItem="mmw-XV-BMt" secondAttribute="centerY" id="5oZ-b7-ym0"/>
                             <constraint firstItem="jik-oS-qWX" firstAttribute="top" secondItem="mmw-XV-BMt" secondAttribute="bottom" constant="23" id="734-oV-m7J"/>
                             <constraint firstAttribute="trailing" secondItem="K84-qx-KVX" secondAttribute="trailing" constant="8" id="77f-jy-nVy"/>
                             <constraint firstAttribute="bottom" secondItem="jik-oS-qWX" secondAttribute="bottom" id="DNJ-I0-Apz"/>
@@ -83,6 +83,7 @@
                             <constraint firstItem="mmw-XV-BMt" firstAttribute="top" secondItem="O7R-xr-f1z" secondAttribute="top" constant="23" id="bxW-jh-MxK"/>
                             <constraint firstItem="SYd-ZI-Xki" firstAttribute="top" secondItem="O7R-xr-f1z" secondAttribute="top" constant="35" id="iOn-md-PoJ"/>
                             <constraint firstAttribute="trailing" secondItem="SYd-ZI-Xki" secondAttribute="trailing" constant="8" id="nOY-gK-FbG"/>
+                            <constraint firstItem="Nk0-S6-MFJ" firstAttribute="centerX" secondItem="mmw-XV-BMt" secondAttribute="centerX" id="ndv-Cd-i8U"/>
                             <constraint firstItem="jik-oS-qWX" firstAttribute="leading" secondItem="O7R-xr-f1z" secondAttribute="leading" id="r3b-1a-XdC"/>
                             <constraint firstItem="jik-oS-qWX" firstAttribute="top" secondItem="K84-qx-KVX" secondAttribute="bottom" constant="14" id="xRJ-n3-d4w"/>
                         </constraints>
